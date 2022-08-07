@@ -1,3 +1,5 @@
+MMERGE SORTED ARRAY
+
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int i=m-1,j=nums2.length-1;
@@ -33,4 +35,23 @@ class Solution {
     }
 }
 
+
+TWO SUM
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> mpp=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            int check=target-nums[i];
+            if(mpp.containsKey(check)){
+                //Integer b=mpp.get(check);
+                return new int[] {i,mpp.get(check)};
+            }
+            else{
+                mpp.put(nums[i], i);
+            }
+        }
+        return new int[] {2,2};
+    }
+}
 
