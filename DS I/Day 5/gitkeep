@@ -1,0 +1,32 @@
+SEARACH 2D MATRIX
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length - 1, col = 0;
+        while (row >= 0 && col < matrix[0].length){
+            if (matrix[row][col] == target)
+                return true;
+            else if (matrix[row][col] < target)
+                col++;
+            else if (matrix[row][col] > target)
+                row--;
+        }
+        return false;
+    }
+}
+
+VALID SUDOKU
+
+public boolean isValidSudoku(char[][] board) {
+    Set seen = new HashSet();
+    for (int i=0; i<9; ++i) {
+        for (int j=0; j<9; ++j) {
+            if (board[i][j] != '.') {
+                String b = "(" + board[i][j] + ")";
+                if (!seen.add(b + i) || !seen.add(j + b) || !seen.add(i/3 + b + j/3))
+                    return false;
+            }
+        }
+    }
+    return true;
+}
