@@ -1,0 +1,18 @@
+INSERT TREE
+
+public TreeNode insertIntoBST(TreeNode root, int val) {
+        if(root==null) return new TreeNode(val);
+        if(root.val>val) root.left = insertIntoBST(root.left,val);
+        else root.right = insertIntoBST(root.right,val);
+        return root;
+    }
+    
+SEARCH TREE
+
+public TreeNode searchBST(TreeNode root, int val) {
+        //If the current node is not empty, and it is not
+        // what we are looking for, continue to search
+        while (root != null && root.val != val)
+            root = val < root.val ? root.left : root.right;
+        return root;
+    }
