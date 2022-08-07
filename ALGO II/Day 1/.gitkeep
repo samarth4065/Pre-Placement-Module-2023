@@ -1,0 +1,24 @@
+vector<int> searchRange(int A[], int n, int target) {
+    int i = 0, j = n - 1;
+    vector<int> ret(2, -1);
+    // Search for the left one
+    while (i < j)
+    {
+        int mid = (i + j) /2;
+        if (A[mid] < target) i = mid + 1;
+        else j = mid;
+    }
+    if (A[i]!=target) return ret;
+    else ret[0] = i;
+    
+    // Search for the right one
+    j = n-1;  
+    while (i < j)
+    {
+        int mid = (i + j) /2 + 1;	// Make mid biased to the right
+        if (A[mid] > target) j = mid - 1;  
+        else i = mid;				
+    }
+    ret[1] = j;
+    return ret; 
+}
