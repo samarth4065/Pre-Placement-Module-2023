@@ -1,0 +1,21 @@
+private int rob(int[] num, int lo, int hi) {
+    int include = 0, exclude = 0;
+    for (int j = lo; j <= hi; j++) {
+        int i = include, e = exclude;
+        include = e + num[j];
+        exclude = Math.max(e, i);
+    }
+    return Math.max(include, exclude);
+}
+///////////////////////////////////////////////////
+public int jump(int[] A) {
+	int jumps = 0, curEnd = 0, curFarthest = 0;
+	for (int i = 0; i < A.length - 1; i++) {
+		curFarthest = Math.max(curFarthest, i + A[i]);
+		if (i == curEnd) {
+			jumps++;
+			curEnd = curFarthest;
+		}
+	}
+	return jumps;
+}
