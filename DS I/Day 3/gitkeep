@@ -1,0 +1,43 @@
+BEST TIME TO SELL STOCK
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min=Integer.MAX_VALUE;
+        int maxprof=0;
+        for(int i=0;i<prices.length;i++){
+            min=Math.min(min, prices[i]);
+            int profit=prices[i]-min;
+            maxprof=Math.max(maxprof, profit);
+        }
+        return maxprof;
+    }
+}
+
+
+INTERSECTION OF TWO ARRAYS
+
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer,Integer> mpp=new HashMap<>();
+        int[] p=new int[1000];
+        for(int i=0;i<nums1.length;i++){
+            Integer c=mpp.get(nums1[i]);
+            if(c==null){
+                mpp.put(nums1[i], 1);
+            }
+            else{
+                mpp.put(nums1[i], c+1);
+            }
+        }int j=0;
+        for(int i=0;i<nums2.length;i++){
+            Integer c=mpp.get(nums2[i]);
+            if(c!=null&&c!=0){
+                p[j]=nums2[i];
+                ++j;
+                mpp.put(nums2[i], c-1);
+            }
+        }
+        int[] q=Arrays.copyOfRange(p, 0, j);
+        return q;
+    }
+}
