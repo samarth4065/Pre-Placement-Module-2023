@@ -1,0 +1,28 @@
+INVERT BINARY TREE
+
+public class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        
+        if (root == null) {
+            return null;
+        }
+
+        final TreeNode left = root.left,
+                right = root.right;
+        root.left = invertTree(right);
+        root.right = invertTree(left);
+        return root;
+    }
+}
+
+PATH SUM
+
+public class Solution {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null) return false;
+    
+        if(root.left == null && root.right == null && sum - root.val == 0) return true;
+    
+        return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+    }
+}
