@@ -1,0 +1,41 @@
+int findMin(vector<int> &num) {
+        int start=0,end=num.size()-1;
+        
+        while (start<end) {
+            if (num[start]<num[end])
+                return num[start];
+            
+            int mid = (start+end)/2;
+            
+            if (num[mid]>=num[start]) {
+                start = mid+1;
+            } else {
+                end = mid;
+            }
+        }
+        
+        return num[start];
+    }
+    
+    /////////////////////////////////////////////////////
+    
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head==null) return null;
+        ListNode FakeHead=new ListNode(0);
+        FakeHead.next=head;
+        ListNode pre=FakeHead;
+        ListNode cur=head;
+        while(cur!=null){
+            while(cur.next!=null&&cur.val==cur.next.val){
+                cur=cur.next;
+            }
+            if(pre.next==cur){
+                pre=pre.next;
+            }
+            else{
+                pre.next=cur.next;
+            }
+            cur=cur.next;
+        }
+        return FakeHead.next;
+    }
